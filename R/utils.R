@@ -70,7 +70,7 @@ makepathStars <- function(group, tmpdirName = NA) {
     tmpPath <- paste(tempfile(pattern = "data_stars"),
                      createFileId(),
                      sep = "_")
-    dir.create(tmpPath)
+    dir.create(tmpPath, recursive=T)
   } else {
     tmpdir <- paste0(dirname(tempdir()),"/", tmpdirName)
     tmpPath <- paste(tempfile(pattern = "data_stars", tmpdir = tmpdir),
