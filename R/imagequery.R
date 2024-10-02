@@ -63,6 +63,7 @@ addImageQuery = function(map,
                          position = 'topright',
                          prefix = 'Layer',
                          className = "",
+                         tmpdirName = NA,
                          ...) {
 
   if (inherits(map, "mapview")) map = mapview2leaflet(map)
@@ -74,7 +75,7 @@ addImageQuery = function(map,
 
   jsgroup <- gsub(".", "", make.names(group), fixed = TRUE)
 
-  tmp <- makepathStars(as.character(jsgroup))
+  tmp <- makepathStars(as.character(jsgroup), tmpdirName = tmpdirName)
   pathDatFn <- tmp[[2]][1]
   # starspathDatFn <- tmp[[3]][1]
   # datFn <- tmp[[4]][1]

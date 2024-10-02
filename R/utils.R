@@ -62,14 +62,22 @@ combineExtent = function(lst, sf = FALSE, crs = 4326) {
 }
 
 
-makepathStars <- function(group) {
+makepathStars <- function(group, tmpdirName = NA) {
   dirs <- list.dirs(tempdir())
   # tmpPath <- grep(utils::glob2rx("*data_large*"), dirs, value = TRUE)
   # if (length(tmpPath) == 0) {
-  tmpPath <- paste(tempfile(pattern = "data_stars"),
-                   createFileId(),
-                   sep = "_")
-  dir.create(tmpPath)
+  if (is.na(tmpdirName)) {
+    tmpPath <- paste(tempfile(pattern = "data_stars"),
+                     createFileId(),
+                     sep = "_")
+    dir.create(tmpPath)
+  } else {
+    tmpdir <- paste0(dirname(tempdir()),"/", tmpdirName)
+    tmpPath <- paste(tempfile(pattern = "data_stars", tmpdir = tmpdir),
+                     createFileId(),
+                     sep = "_")
+    dir.create(tmpPath)
+  }
   # }
   baseFn <- paste("data_stars", group, sep = "_")
   extFn <- "txt"
